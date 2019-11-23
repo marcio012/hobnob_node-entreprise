@@ -1,0 +1,8 @@
+{
+  "name": "hobnob",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "\"App de Estudo do Node no padrão enterprise de aplicação\"",
+  "author": "\"Márcio Heleno <marcio.heleno@gmail.com>\""
+}
