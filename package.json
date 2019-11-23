@@ -2,7 +2,18 @@
   "name": "hobnob",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
   "description": "\"App de Estudo do Node no padrão enterprise de aplicação\"",
-  "author": "\"Márcio Heleno <marcio.heleno@gmail.com>\""
+  "scripts": {
+    "test": "echo \"Error: no test specified \" && exit 1 "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcio012/hobnob_node-entreprise.git"
+  },
+  "author": "Márcio Heleno <marcio.heleno@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcio012/hobnob_node-entreprise/issues"
+  }
+  "homepage": "https://github.com/marcio012/hobnob_node-entreprise#readme"
 }
