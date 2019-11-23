@@ -26,7 +26,7 @@ Feature: Create User
   #And sends the request
   And enviar uma solicitação
   #Then our API should respond with a 400 HTTP status code
-  Then Api deve responder com um codigo 400 HTTP status 
+  Then Api deve responder com um codigo 400 HTTP status code 
   #And the payload of the response should be a JSON object
   And e a resposta da Api deve ser no formato de Json
   #And contains a message property which says "Payload should not be empty"
