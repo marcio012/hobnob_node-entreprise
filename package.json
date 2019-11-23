@@ -4,7 +4,13 @@
   "main": "index.js",
   "description": "\"App de Estudo do Node no padrão enterprise de aplicação\"",
   "scripts": {
-    "test": "echo \"Error: no test specified \" && exit 1 "
+    "build": "rimraf dist && babel src -d dist",
+    "serve": "yarn build && node dist/index.js",
+    "test": "echo \"Error: no test specified \" && exit 1 ",
+    "watch": "nodemon -w src --exec yarn run serve",
+    "fix": "eslint src --fix",
+    "lint": "eslint src",
+    "precommit": "yarn run lint"
   },
   "repository": {
     "type": "git",
@@ -15,5 +21,19 @@
   "bugs": {
     "url": "https://github.com/marcio012/hobnob_node-entreprise/issues"
   },
-  "homepage": "https://github.com/marcio012/hobnob_node-entreprise#readme"
+  "homepage": "https://github.com/marcio012/hobnob_node-entreprise#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "eslint": "^6.7.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.1.0",
+    "nodemon": "^2.0.1",
+    "rimraf": "^3.0.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0"
+  }
 }
