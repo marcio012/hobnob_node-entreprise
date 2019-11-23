@@ -1,5 +1,5 @@
-import '@babel/polyfill'
-import http from 'http'
+import '@babel/polyfill';
+import http from 'http';
 
 const requestHandler = (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
