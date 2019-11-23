@@ -31,3 +31,4 @@ Feature: Create User
   And e a resposta da Api deve ser no formato de Json
   #And contains a message property which says "Payload should not be empty"
   And contendo a mensagem "Payload should not be empty"
+  
