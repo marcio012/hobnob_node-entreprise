@@ -5,20 +5,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// let request;
-// let result;
-// let error;
-// let payload;
-
-When('o cliente faz uma solicitação com o metodo POST /users', function () {
+When(/^o cliente faz uma solicitação com o metodo POST \/users$/, function () {
   this.request = superagent('POST', `${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/users`);
 });
 
-When('envia uma carga de dados vazia', function () {
+When(/^envia uma carga de dados vazia$/, function () {
   return undefined;
 });
 
-When('enviar uma solicitação', function (callback) {
+When(/^enviar uma solicitação$/, function (callback) {
   this.request
     .then((response) => {
       // this.response = response.res;
@@ -31,11 +26,11 @@ When('enviar uma solicitação', function (callback) {
     });
 });
 
-Then('Api deve responder com um codigo 400 HTTP status code', function () {
+Then(/^Api deve responder com um codigo HTTP status code 400$/, function () {
   assert.equal(this.response.statusCode, 400);
 });
 
-Then('e a resposta da Api deve ser no formato de Json', function () {
+Then(/^e a resposta da Api deve ser no formato de Json$/, function () {
   const contentType = this.response.headers['Content-type'] || this.response.headers['content-type'];
   if (!contentType || !contentType.includes('application/json')) {
     throw new Error('Response not of Content-Type application/json');
@@ -48,6 +43,28 @@ Then('e a resposta da Api deve ser no formato de Json', function () {
   }
 });
 
-Then('contendo a mensagem "Payload should not be empty"', function () {
+Then(/^contendo a mensagem 'Payload should not be empty'$/, function () {
   assert.equal(this.responsePayload.message, 'Payload should not be empty');
+});
+
+When(/^envia uma carga em um padrão difente de Json$/, function () {
+  this.request.send('<?xml version="1.0" encoding="UTF-8" ?><email>dan@danyll.com</email>');
+  this.request.set('Content-Type', 'text/xml');
+});
+
+When(/^anexa uma carga útil no padrão Json malformada$/, function () {
+  this.request.send('{"email": "dan@danyll.com", name: }');
+  this.request.set('Content-Type', 'application/json');
+});
+
+Then(/^Api deve responder com um codigo HTTP status code 415$/, function () {
+  assert.equal(this.response.statusCode, 415);
+});
+
+Then(/^contém a mensagem 'The "Content-Type" header must always be "application\/json"'$/, function () {
+  assert.equal(this.responsePayload.message, 'The "Content-Type" header must always be "application/json"');
+});
+
+Then(/^contém a mensagem 'Payload should be in JSON format'$/, function () {
+  assert.equal(this.responsePayload.message, 'Payload should be in JSON format');
 });

@@ -26,9 +26,36 @@ Feature: Create User
   #And sends the request
   And enviar uma solicitação
   #Then our API should respond with a 400 HTTP status code
-  Then Api deve responder com um codigo 400 HTTP status code 
+  Then Api deve responder com um codigo HTTP status code 400
   #And the payload of the response should be a JSON object
   And e a resposta da Api deve ser no formato de Json
   #And contains a message property which says "Payload should not be empty"
-  And contendo a mensagem "Payload should not be empty"
-  
+  And contendo a mensagem 'Payload should not be empty'
+
+
+  Scenario: Carga Util em padrão diferente de Json
+
+  Se o cliente enviar uma solicitação POST para /users com uma carga útil que 
+  não seja JSON, deverá receber uma resposta com um codigo de status HTTP 415.
+  Tipo de mídia não suportado.
+
+  When o cliente faz uma solicitação com o metodo POST /users
+  And envia uma carga em um padrão difente de Json
+  And enviar uma solicitação
+  Then Api deve responder com um codigo HTTP status code 415
+  And e a resposta da Api deve ser no formato de Json
+  And contém a mensagem 'The "Content-Type" header must always be "application/json"'
+
+
+
+  Scenario: Carga Json fora do padrão
+
+  Se o cliente enviar uma solicitação POST para /users com uma carga útil que seja mal formado, deve receber uma resposta com um código de status HTTP 400.
+  Tipo de mídia não suportado.
+
+  When o cliente faz uma solicitação com o metodo POST /users
+  And anexa uma carga útil no padrão Json malformada
+  And enviar uma solicitação
+  Then Api deve responder com um codigo HTTP status code 400
+  And e a resposta da Api deve ser no formato de Json
+  And contém a mensagem 'Payload should be in JSON format'
