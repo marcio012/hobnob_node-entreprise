@@ -1,5 +1,9 @@
 import '@babel/polyfill';
+
+import dotenv from 'dotenv';
 import http from 'http';
+
+dotenv.config();
 
 function requestHandler(req, res) {
   if (req.method === 'POST' && req.url === '/users') {

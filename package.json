@@ -5,9 +5,9 @@
   "description": "\"App de Estudo do Node no padrão enterprise de aplicação\"",
   "scripts": {
     "build": "rimraf dist && babel src -d dist",
-    "serve": "yarn build && dotenv node dist/index.js",
+    "serve": "yarn build && node dist/index.js",
     "test": "echo \"Error: no test specified \" && exit 1 ",
-    "test:e2e": "cucumber-js spec/cucumber/features --require-module @babel/register --require spec/cucumber/steps/index.js",
+    "test:e2e": "cucumber-js spec/cucumber/features --require-module @babel/register --require spec/cucumber/steps",
     "watch": "nodemon -w src --exec yarn run serve",
     "fix": "eslint src --fix",
     "lint": "eslint src",
@@ -30,8 +30,6 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/register": "^7.7.4",
     "cucumber": "^6.0.5",
-    "dotenv": "^8.2.0",
-    "dotenv-cli": "^3.1.0",
     "eslint": "^6.7.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
@@ -42,6 +40,7 @@
     "superagent": "^5.1.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.7.0"
+    "@babel/polyfill": "^7.7.0",
+    "dotenv": "^8.2.0"
   }
 }
